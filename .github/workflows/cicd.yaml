@@ -37,5 +37,6 @@ jobs:
       - uses: actions/checkout@v3
       - uses: azure/setup-kubectl@v3
       - run: |
+          minikube start
           kubectl apply -f deployment.yaml
           kubectl apply -f service.yaml
