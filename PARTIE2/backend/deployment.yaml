@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: christophersize/api   # image buildée ou poussée sur Docker Hub
+        ports:
+        - containerPort: 3000
+        env:
+        - name: DB_HOST
+          value: mysql
+        - name: DB_USER
+          value: test
+        - name: DB_PASSWORD
+          value: test
+        - name: DB_NAME
+          value: mangas
