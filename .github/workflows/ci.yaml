@@ -26,13 +26,13 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Run backend tests
-      working-directory: PARTIE1/projet_Docker_ESIEA/app
+      working-directory: PARTIE1/Projet-Docker-ESIEA/app
       run: |
         npm install
         npm test || echo "No backend tests defined"
 
     - name: Run frontend tests
-      working-directory: PARTIE1/projet_Docker_ESIEA/projet_docker_esiea
+      working-directory: PARTIE1/Projet-Docker-ESIEA/projet_docker_esiea
       run: |
         npm install
         npm test -- --watch=false || echo "No frontend tests defined"
@@ -40,8 +40,8 @@ jobs:
     - name: Build & push backend image
       uses: docker/build-push-action@v5
       with:
-        context: PARTIE1/projet_Docker_ESIEA/app
-        file: PARTIE1/projet_Docker_ESIEA/app/Dockerfile
+        context: PARTIE1/Projet-Docker-ESIEA/app
+        file: PARTIE1/Projet-Docker-ESIEA/app/Dockerfile
         push: true
         tags: |
           ${{ secrets.DOCKER_USERNAME }}/api:latest
@@ -50,8 +50,8 @@ jobs:
     - name: Build & push frontend image
       uses: docker/build-push-action@v5
       with:
-        context: PARTIE1/projet_Docker_ESIEA/projet_docker_esiea
-        file: PARTIE1/projet_Docker_ESIEA/projet_docker_esiea/Dockerfile
+        context: PARTIE1/Projet-Docker-ESIEA/projet_docker_esiea
+        file: PARTIE1/Projet-Docker-ESIEA/projet_docker_esiea/Dockerfile
         push: true
         tags: |
           ${{ secrets.DOCKER_USERNAME }}/front-image-hub:latest
